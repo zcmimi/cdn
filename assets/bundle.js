@@ -324,11 +324,12 @@ function search(file){
                         f=1;break;
                     }
                 else for(j in data[i].categories)
-                    if(data[i].categories[j].toLowerCase().indexOf(text)!=-1){
+                    for(k in data[i].categories[j])
+                    if(data[i].categories[j][k].toLowerCase().indexOf(text)!=-1){
                         f=1;break;
                     }
                 else if(data[i].content.toLowerCase().indexOf(text)!=-1)f=1;
-                if(f)document.getElementById("search_result").innerHTML+="<a href="+data[i].link+" class='mdui-list-item'><div class='mdui-list-item-content'><div class='mdui-list-item-title'>"+data[i].title+"</div><div class='mdui-list-item-text'>"+data[i].text.substr(0,50).replace(/</g,"&lt;")+"</div></div></a>";
+                if(f)document.getElementById("search_result").innerHTML+="<a href="+data[i].link+" class='mdui-list-item'><div class='mdui-list-item-content'><div class='mdui-list-item-title'>"+data[i].title+"</div><div class='mdui-list-item-text'>"+data[i].content.substr(0,50).replace(/</g,"&lt;")+"</div></div></a>";
             }
             search_dialog.handleUpdate();
         }

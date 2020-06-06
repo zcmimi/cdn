@@ -1,43 +1,67 @@
-.mdui-color-white,.read_more{
-    background-color:  #49b6ff !important;
-    color: #fff !important;
-    font-weight: 1000;
+.mdui-card{background: #fff;}
+.mdui-card-header{
+    background-color: #f1f8ff;
+    color: #009dff;
 }
-.markdown-body .mdui-list-item-content,.markdown-body .mdui-text-color-black{color: #000 !important;font-weight: normal;}
-.mdui-text-color-black,.mdui-list-item-content,#toc{
+.mdui-card-menu{color: #009dff;}
+.mdui-color-white,.read_more,footer .mdui-card{
+    background-color:  #66ccff !important;
     color: #fff !important;
-    font-weight: bold;
 }
-.mdui-drawer{background-color: #30baff93;}
+.markdown-body .mdui-list-item-content,.markdown-body .mdui-text-color-black{
+    color: #000 !important;
+    font-weight: normal;
+}
+.mdui-text-color-black,.mdui-text-center,.mdui-list-item-content,#toc{
+    color: #fff !important;
+}
+.mdui-drawer{background-color: #63c3ff;}
 html{
     background-image: url("/img/blue_grid.webp");
-    background-color: #d7f4ffad !important;
+    background-color: #c9e0ff !important;
     background-attachment: fixed;
-}body{background: none;color: #fff;}
-.mdui-card{
-    background: #d2f0ffb2;
-    backdrop-filter: blur(3px) brightness(110%);
+}body{background: none;}
+.markdown-body blockquote{
+    color: #80aed3;
+    background-color: #cbe8ff4f;
+    border-left: 0.25em solid #66ccff;
 }
-.avatar,.link-img{backdrop-filter: blur(5px);background-color: #ffffff30;}
-.md_out.markdown-body{
-    font-weight: bold;
-    color: #43b4ff;
-}
-.mdui-card-header{color: #0099ff;}
-.mdui-card.markdown-body a{color: #66ccff !important;}
-.v .vwrap{border: 2px solid #66ccff;}
+.mdui-card.markdown-body a{color: #8bd1ff !important;}
+.v .vwrap{border: 2px solid #66ccff !important;}
 #totop,.vbtn,.vsys{
     background: #66ccff !important;
     color: #fff !important;
 }
+.vnick,.vat{
+    color: #058aff !important;
+}
+.v .vlist .vcard .vcontent.expand:before{background:linear-gradient(180deg,#ecf8ff00,#ffecf0af) !important;}
+.v .vlist .vcard .vcontent.expand:after{background-color: #ffecf0af !important;}
 .mdui-chip{
-    background-color: #76c8ff;
+    background-color: #66ccff;
     color: #fff !important;
 }
-.mdui-chip-icon{background-color: #00aaff;}
-.vnick,.vat{color: #058aff !important;}
-.mdui-menu-item:hover,.markdown-body a:hover{color: #66ccff !important;}
+.mdui-menu{
+    background-color: #6dc7f1;
+    color: #fff;
+}
+.mdui-menu-item:hover,.markdown-body a:hover{color: #8bd1ff !important;}
+.mdui-dialog{background-color: #66ccff !important;color: #fff !important;}
+.mdui-dialog-title,.mdui-dialog-content{color: #fff !important;font-weight: bold;}
+.mdui-theme-accent-blue .mdui-textfield-focus .mdui-textfield-input{border-bottom-color: #fff !important;box-shadow: 1px 0 0 #fff;}
+.mdui-theme-accent-blue .mdui-textfield-focus .mdui-icon{color: #fff;}
+h1,h2,h3{color: #7dcbff;}
+h1 a,h2 a,h3 a{color: #88c9ff;}
+.markdown-body h1,.markdown-body h2{border-bottom: 1.5px solid #66ccff;}
+.markdown-body hr{background-color: #66ccff;}
 
-.mdui-card-content h1{color: #329cff;}
-.mdui-card-content h2{color: #48adff;}
-.mdui-card-content h3{color: #31beff;}
+details{border-left: .2rem solid #66ccff;}
+details summary{
+    cursor: pointer;
+    line-height: 2.5em;
+    outline: 0;
+    margin: 0 -.6rem;
+    padding: .1rem .0 .0 1rem;
+    border-bottom: .05rem solid #66ccff81 !important;
+    background-color: #66ccff3d !important;
+}

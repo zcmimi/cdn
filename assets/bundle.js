@@ -226,6 +226,7 @@ function gentoc(id){
     toc.innerHTML="";
     while(item){
         if(item.tagName=='H1'){
+            item.setAttribute('id',item.textContent);
             var catalogA = document.createElement("a");
             catalogA.textContent=item.textContent;
             catalogA.href='#'+item.id;
@@ -238,6 +239,7 @@ function gentoc(id){
             toc.appendChild(catalogLi);
         }
         else if(item.tagName=='H2'){
+            item.setAttribute('id',item.textContent);
             if(!secondtoc){
                 secondtoc=document.createElement("ul");
                 toc.appendChild(secondtoc);
@@ -253,6 +255,7 @@ function gentoc(id){
             secondtoc.appendChild(catalogLi);
         }
         else if(item.tagName=='H3'){
+            item.setAttribute('id',item.textContent);
             if(!thirdtoc){
                 thirdtoc=document.createElement("ul");
                 toc.appendChild(thirdtoc);

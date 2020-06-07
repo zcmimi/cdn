@@ -136,7 +136,7 @@ function katex_(){
     });
     document.querySelectorAll('code latex_display').forEach((x)=>{
         var y=document.createElement('span');
-        katex.render(x.innerText,y,{throwOnError: false});
+        katex.render(x.innerText,y,{displayMode:true,throwOnError: false});
         x.parentElement.replaceWith(y.children[0]);
     });
 }

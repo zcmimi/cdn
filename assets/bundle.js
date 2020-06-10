@@ -15,10 +15,6 @@ function onloadf(){
         document.getElementById('toc_drawer').hidden=1;
     }else
     if(page_typ=='article'){
-        if(document.getElementById('vcomments')){
-            var val=JSON.parse(document.getElementById('vcomments').innerHTML);
-            if(val)new Valine({el: '#comments',placeholder: val.placeholder,appId: val.appid,appKey: val.appkey,path: document.location.pathname});
-        }
         if(document.getElementById("md_out"))highlight(),gentoc("md_out");
         toc_drawer=new mdui.Drawer('#toc_drawer');
         document.getElementById('toc_button').hidden=0;
@@ -37,7 +33,7 @@ document.onkeydown=function(e){
     }
 }
 function pjax_on(typ=0){
-    var pjax=new Pjax({elements: "a",selectors: ["#TOC",".mdui-container"]});
+    var pjax=new Pjax({elements: "a",selectors: ["#TOC",".mdui-container",".js-pjax"]});
     document.addEventListener('pjax:send',function(){document.getElementById('loading-progress').hidden=0;});
     document.addEventListener('pjax:complete',function(){document.getElementById('loading-progress').hidden=1;onloadf();mdui.mutation();});
     if(typ==0)mdui.snackbar({
@@ -45,7 +41,7 @@ function pjax_on(typ=0){
         buttonText: '刷新以撤销',
         onButtonClick: function(){window.location.reload()},
         timeout: 2000
-      });
+    });
     if(typ==1)mdui.snackbar({message: '开启音乐默认开启pjax',timeout: 2000});
     document.getElementById('pjax_button').hidden=1;
 }

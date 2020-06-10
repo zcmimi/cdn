@@ -138,8 +138,10 @@ function katex_(){
 }
 function highlight(){
     document.querySelectorAll('pre code').forEach((x)=>{
+        x.innerHTML=x.innerHTML.trim();
         var lang=x.classList[0],len=x.innerText.length;
-        lang=lang.split('-'),lang=lang[lang.length-1];
+        try{lang=lang.split('-'),lang=lang[lang.length-1];}
+        catch{lang='text';}
         hljs.highlightBlock(x);
         var nb=document.createElement("code"),str="",tot=x.innerText.split('\n').length;
         for(var i=1;i<=tot;++i)str+=i+'\n';

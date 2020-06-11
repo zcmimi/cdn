@@ -3,8 +3,8 @@
 .mdui-text-color-black{color: #fff !important;}
 code{background-color: #0000 !important;color: #66ccff}
 .vinput{color: #fff !important;}
-.markdown-body{color: #fff}
-.markdown-body blockquote{color: #bbb;}
+.md-body{color: #fff}
+.md-body blockquote{color: #bbb;}
 ::-webkit-input-placeholder,.vctrl{color:rgba(255, 255, 255, 0.726)}
 .vemoji-btn,.vpreview-btn,.vcontent *{color: #fff !important;}
 .vsys{background: rgb(112, 112, 112) !important;color: #fff !important;}

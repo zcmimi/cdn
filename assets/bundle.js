@@ -1,12 +1,12 @@
 document.onreadystatechange=function(){
     theme("chk");
+    if(document.readyState=="complete")onloadf();
 }
-window.onload=onloadf;
 function onloadf(){
     theme("chk");
     document.getElementById('loading-progress').hidden=1;
-    loadImages=lazyload();loadImages();
-    window.addEventListener('scroll',loadImages,false);
+    lazyload();
+    window.addEventListener('scroll',lazyload);
     page_typ=document.getElementById('page_typ').innerHTML;
     drawer=new mdui.Drawer('#drawer');
     search_dialog=new mdui.Dialog('#search_dialog',{overlay: false});
@@ -15,7 +15,7 @@ function onloadf(){
         document.getElementById('toc_drawer').hidden=1;
     }else
     if(page_typ=='article'){
-        if(document.getElementById("md_out"))highlight(),gentoc("md_out");
+        if(document.getElementById("md-body"))highlight(),gentoc("md-body");
         toc_drawer=new mdui.Drawer('#toc_drawer');
         document.getElementById('toc_button').hidden=0;
         document.getElementById('toc_drawer').hidden=0;
@@ -33,7 +33,12 @@ document.onkeydown=function(e){
     }
 }
 function pjax_on(typ=0){
-    var pjax=new Pjax({elements: "a",selectors: ["#TOC",".mdui-container",".js-pjax"]});
+    var pjax=new Pjax({elements: "a",selectors: [
+        "title",
+        "#TOC",
+        ".mdui-container",
+        ".js-pjax"
+    ]});
     document.addEventListener('pjax:send',function(){document.getElementById('loading-progress').hidden=0;});
     document.addEventListener('pjax:complete',function(){document.getElementById('loading-progress').hidden=1;onloadf();mdui.mutation();});
     if(typ==0)mdui.snackbar({
@@ -77,11 +82,11 @@ function theme_night(){
     document.querySelector('body').classList.add("mdui-theme-layout-dark");
     var node=document.getElementById('theme_css'),
         hl=document.createElement('link'),t=document.createElement('link');
-    hl.href="/assets/nord.min.css";
+    hl.href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/nord.min.css";
     hl.type='text/css';
     hl.rel='stylesheet';
     node.appendChild(hl);
-    t.href="/assets/theme_night.css";
+    t.href="/assets/theme/night.css";
     t.type='text/css';
     t.rel='stylesheet';
     node.appendChild(t);
@@ -89,7 +94,7 @@ function theme_night(){
 function theme_pink(){
     setCookie("theme","pink");
     var hl=document.createElement('link');
-    hl.href="/assets/theme_pink.css";
+    hl.href="/assets/theme/pink.css";
     hl.type='text/css';
     hl.rel='stylesheet';
     document.getElementById('theme_css').appendChild(hl);
@@ -97,7 +102,7 @@ function theme_pink(){
 function theme_blue(){
     setCookie("theme","blue");
     var hl=document.createElement('link');
-    hl.href="/assets/theme_blue.css";
+    hl.href="/assets/theme/blue.css";
     hl.type='text/css';
     hl.rel='stylesheet';
     document.getElementById('theme_css').appendChild(hl);
@@ -212,7 +217,7 @@ function highlight(){
         ".hljs-lang{","background-color: #39c5bb;","}",
         ".hljs-len{","background-color: #f7a4b9;","}",
         ".hljs-fd:after,.hljs-cb:after,.hljs-lang:after,.hljs-len:after{","content: attr(data-title)","}",
-        ".hljs-nb{color: #bbb;}"
+        ".hljs-nb{color: #bbb !important;}"
     ].join("");
     document.getElementsByTagName("head")[0].appendChild(sty);
 }
@@ -278,17 +283,15 @@ function lazyload(){
     var images=document.getElementsByTagName('img'),
         len=images.length,
         n=0;
-    return function(){
-        var seeHeight=document.documentElement.clientHeight,
-            scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
-        for(;n<len;++n)
-        if(images[n].offsetTop<seeHeight+scrollTop){
-            var datasrc=images[n].getAttribute('data-src');
-            if(datasrc!=null&&images[n].src!=datasrc)
-                images[n].src=images[n].getAttribute('data-src');
-        }
-        else break;
+    var seeHeight=document.documentElement.clientHeight,
+        scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+    for(;n<len;++n)
+    if(images[n].offsetTop<seeHeight+scrollTop){
+        var datasrc=images[n].getAttribute('data-src');
+        if(datasrc!=null&&images[n].src!=datasrc)
+            images[n].src=images[n].getAttribute('data-src');
     }
+    else break;
 }
 function search(file){
     document.getElementById('loading-progress').hidden=0;

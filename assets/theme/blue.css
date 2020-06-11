@@ -8,7 +8,7 @@
     background-color:  #66ccff !important;
     color: #fff !important;
 }
-.markdown-body .mdui-list-item-content,.markdown-body .mdui-text-color-black{
+.md-body .mdui-list-item-content,.md-body .mdui-text-color-black{
     color: #000 !important;
     font-weight: normal;
 }
@@ -21,12 +21,12 @@ html{
     background-color: #c9e0ff !important;
     background-attachment: fixed;
 }body{background: none;}
-.markdown-body blockquote{
+.md-body blockquote{
     color: #80aed3;
     background-color: #cbe8ff4f;
     border-left: 0.25em solid #66ccff;
 }
-.mdui-card.markdown-body a{color: #8bd1ff !important;}
+.mdui-card.md-body a{color: #8bd1ff !important;}
 .v .vwrap{border: 2px solid #66ccff !important;}
 #totop,.vbtn,.vsys{
     background: #66ccff !important;
@@ -45,15 +45,15 @@ html{
     background-color: #6dc7f1;
     color: #fff;
 }
-.mdui-menu-item:hover,.markdown-body a:hover{color: #8bd1ff !important;}
+.mdui-menu-item:hover,.md-body a:hover{color: #8bd1ff !important;}
 .mdui-dialog{background-color: #66ccff !important;color: #fff !important;}
 .mdui-dialog-title,.mdui-dialog-content{color: #fff !important;font-weight: bold;}
 .mdui-theme-accent-blue .mdui-textfield-focus .mdui-textfield-input{border-bottom-color: #fff !important;box-shadow: 1px 0 0 #fff;}
 .mdui-theme-accent-blue .mdui-textfield-focus .mdui-icon{color: #fff;}
 h1,h2,h3{color: #7dcbff;}
 h1 a,h2 a,h3 a{color: #88c9ff;}
-.markdown-body h1,.markdown-body h2{border-bottom: 1.5px solid #66ccff;}
-.markdown-body hr{background-color: #66ccff;}
+.md-body h1,.md-body h2{border-bottom: 1.5px solid #66ccff;}
+.md-body hr{background-color: #66ccff;}
 
 details{border-left: .2rem solid #66ccff;}
 details summary{

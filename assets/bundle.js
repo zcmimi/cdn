@@ -292,9 +292,10 @@ function lazyload(){
 }
 function search(file){
     document.getElementById('loading-progress').hidden=0;
-    var text=document.getElementById("search_input").value.toLowerCase();
-    document.getElementById("search_result").innerHTML="";
-    var xhr=new XMLHttpRequest();
+    var text=document.getElementById("search_input").value.toLowerCase(),
+        res=document.getElementById("search_result"),
+        xhr=new XMLHttpRequest();
+    res.innerHTML='';
     xhr.open('GET',file,true);
     xhr.onreadystatechange=function(){
         mdui.mutation();
@@ -314,7 +315,26 @@ function search(file){
                         f=1;break;
                     }
                 else if(data[i].content.toLowerCase().indexOf(text)!=-1)f=1;
-                if(f)document.getElementById("search_result").innerHTML+="<a href="+data[i].link+" class='mdui-list-item'><div class='mdui-list-item-content'><div class='mdui-list-item-title'>"+data[i].title+"</div><div class='mdui-list-item-text'>"+data[i].content.substr(0,50).replace(/</g,"&lt;")+"</div></div></a>";
+                if(f){
+                    var a=document.createElement('a'),
+                        content=document.createElement('div'),
+                        Title=document.createElement('div'),
+                        Text=document.createElement('div');
+                    
+                    a.classList.add('mdui-list-item');
+                    Title.classList.add('mdui-list-item-title');
+                    Text.classList.add('mdui-list-item-text');
+                    content.classList.add('mdui-list-item-content');
+
+                    a.href=data[i].link;
+                    Title.innerText=data[i].title;
+                    Text.innerText=data[i].content.substr(0,50).replace(/[\r\n]/g," ");
+                    
+                    content.appendChild(Title),content.appendChild(Text);
+                    a.appendChild(content);
+                    
+                    res.appendChild(a);
+                }                
             }
             search_dialog.handleUpdate();
         }

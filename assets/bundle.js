@@ -1,7 +1,4 @@
-document.onreadystatechange=function(){
-    theme("chk");
-    if(document.readyState=="complete")onloadf();
-}
+document.onreadystatechange=function(){if(document.readyState=="complete")onloadf();}
 function onloadf(){
     theme("chk");
     document.getElementById('loading-progress').hidden=1;
@@ -33,7 +30,7 @@ document.onkeydown=function(e){
     }
 }
 function pjax_on(typ=0){
-    var pjax=new Pjax({elements: "a",selectors: [
+    var pjax=new Pjax({elements:"a",selectors:[
         "title",
         "#TOC",
         ".mdui-container",

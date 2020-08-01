@@ -1,25 +1,43 @@
-document.onreadystatechange=function(){if(document.readyState=="complete")onloadf();}
-function onloadf(){
+window.addEventListener('load',(event)=>{first_load();});
+function first_load(){
     theme("chk");
     document.getElementById('loading-progress').hidden=1;
     lazyload();
     window.addEventListener('scroll',lazyload);
-    page_typ=document.getElementById('page_typ').innerHTML;
     drawer=new mdui.Drawer('#drawer');
-    search_dialog=new mdui.Dialog('#search_dialog',{overlay: false});
+    toc_drawer=new mdui.Drawer('#toc_drawer');
+    search_dialog=new mdui.Dialog('#search_dialog',{overlay:false});
+    page_typ=document.getElementById('page_typ').innerText;
     if(page_typ=='index'){
         document.getElementById('toc_button').hidden=1;
         document.getElementById('toc_drawer').hidden=1;
-    }else
-    if(page_typ=='article'){
-        if(document.getElementById("md-body"))highlight(),gentoc("md-body");
-        toc_drawer=new mdui.Drawer('#toc_drawer');
+    }
+    else if(page_typ=='article'){
+        if(document.getElementById("md-body"))gentoc("md-body");
         document.getElementById('toc_button').hidden=0;
         document.getElementById('toc_drawer').hidden=0;
     }
-    katex_();
     var x=document.querySelector('body .mdui-container');
     x.style.minHeight=window.innerHeight-document.body.clientHeight+x.clientHeight+'px';
+    katex_();
+    highlight();
+}
+function pjax_load(){
+    katex_();
+    highlight();
+    page_typ=document.getElementById('page_typ').innerText;
+    if(page_typ=='index'){
+        document.getElementById('toc_button').hidden=1;
+        document.getElementById('toc_drawer').hidden=1;
+    }
+    else if(page_typ=='article'){
+        if(document.getElementById("md-body"))gentoc("md-body");
+        document.getElementById('toc_button').hidden=0;
+        document.getElementById('toc_drawer').hidden=0;
+    }
+}
+function onloadf(){
+    
 }
 document.onkeydown=function(e){
     var keyCode=e.keyCode||e.which||e.charCode;
@@ -28,24 +46,6 @@ document.onkeydown=function(e){
         if(keyCode==39)document.getElementById('nxt_button').click()
         if(keyCode==37)document.getElementById('pre_button').click()
     }
-}
-function pjax_on(typ=0){
-    var pjax=new Pjax({elements:"a",selectors:[
-        "title",
-        "#TOC",
-        ".mdui-container",
-        ".js-pjax"
-    ]});
-    document.addEventListener('pjax:send',function(){document.getElementById('loading-progress').hidden=0;});
-    document.addEventListener('pjax:complete',function(){document.getElementById('loading-progress').hidden=1;onloadf();mdui.mutation();});
-    if(typ==0)mdui.snackbar({
-        message: 'pjax已开启',
-        buttonText: '刷新以撤销',
-        onButtonClick: function(){window.location.reload()},
-        timeout: 2000
-    });
-    if(typ==1)mdui.snackbar({message: '开启音乐默认开启pjax',timeout: 2000});
-    document.getElementById('pjax_button').hidden=1;
 }
 var timeOut,speed=0;
 window.onscroll=function(){
@@ -140,7 +140,7 @@ function katex_(){
 }
 function highlight(){
     document.querySelectorAll('pre code').forEach((x)=>{
-        x.innerHTML=x.innerHTML.trim();
+        if(x.classList.contains("hljs-nb")){x.remove();return;}
         var lang=x.classList[0],len=x.innerText.length;
         try{lang=lang.split('-'),lang=lang[lang.length-1];}
         catch{lang='text';}
@@ -279,14 +279,13 @@ function copylink(){
 function lazyload(){
     var images=document.getElementsByTagName('img'),
         len=images.length,
-        n=0;
-    var seeHeight=document.documentElement.clientHeight,
+        seeHeight=document.documentElement.clientHeight,
         scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
-    for(;n<len;++n)
-    if(images[n].offsetTop<seeHeight+scrollTop){
-        var datasrc=images[n].getAttribute('data-src');
-        if(datasrc!=null&&images[n].src!=datasrc)
-            images[n].src=images[n].getAttribute('data-src');
-    }
-    else break;
+    for(let i=0;i<len;++i)
+        if(images[i].offsetTop<seeHeight+scrollTop){
+            var datasrc=images[i].getAttribute('data-src');
+            if(datasrc!=null&&images[i].src!=datasrc)
+                images[i].src=images[i].getAttribute('data-src');
+        }
+        else break;
 }

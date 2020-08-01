@@ -35,9 +35,8 @@ function pjax_load(){
         document.getElementById('toc_button').hidden=0;
         document.getElementById('toc_drawer').hidden=0;
     }
-}
-function onloadf(){
-    
+    var x=document.querySelector('body .mdui-container');
+    x.style.minHeight=window.innerHeight-document.body.clientHeight+x.clientHeight+'px';
 }
 document.onkeydown=function(e){
     var keyCode=e.keyCode||e.which||e.charCode;

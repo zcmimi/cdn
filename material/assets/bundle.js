@@ -140,6 +140,7 @@ function katex_(){
 function highlight(){
     document.querySelectorAll('pre code').forEach((x)=>{
         if(x.classList.contains("hljs-nb")){x.remove();return;}
+        x.innerText=x.innerText.trim();
         var lang=x.classList[0],len=x.innerText.length;
         try{lang=lang.split('-'),lang=lang[lang.length-1];}
         catch{lang='text';}

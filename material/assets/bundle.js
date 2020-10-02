@@ -142,7 +142,7 @@ function highlight(){
     if(typeof(hljs)=='undefined')return;
     document.querySelectorAll('pre code').forEach((x)=>{
         if(x.classList.contains('hljs-nb')){x.remove();return;}
-        x.innerHTML=x.innerHTML.trim();
+        x.innerHTML=x.innerHTML.replace(/\s+$/g,'');
         var lang=x.classList[0],len=x.innerText.length;
         try{lang=lang.split('-'),lang=lang[lang.length-1];}
         catch{lang='text';}
@@ -274,7 +274,7 @@ function gentoc(id){
     };
 }
 function copylink(){
-    copy('window.location.href');
+    copy(window.location.href);
     mdui.snackbar({message: '复制成功!',position: 'top'});
 }
 function lazyload(){

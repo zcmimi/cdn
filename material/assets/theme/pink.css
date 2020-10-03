@@ -39,6 +39,10 @@ code{color:#ff86ab}
 }
 
 /* valine */
+.vinput,.vempty,.vcontent *,.vnick{
+    color: #660012 !important;
+}
+.vnick:hover{color: #f7a4b9 !important;}
 .v .vwrap{border: 2px solid #f7a4b9 !important;}
 .vbtn,.vsys{
     background: #f7a4b9 !important;
@@ -49,9 +53,7 @@ code{color:#ff86ab}
     color: #f7a4b9 !important;
     background: #fff !important;
 }
-.vinput,.vempty{
-    color: #660012 !important;
-}
-.vcol{color: #f7a4b9 !important;}
+.vat{color:#f7a4b9 !important;}
+.vicon{fill: #f7a4b9 !important;}
 .v .vlist .vcard .vcontent.expand:before{background:linear-gradient(180deg,#ffecf000,#ffecf0af) !important;}
 .v .vlist .vcard .vcontent.expand:after{background-color: #ffecf0af !important;}

@@ -1,10 +1,8 @@
-.mdui-card-header{background-color: #424242;}
-.mdui-color-white{background-color: #0000 !important;color: #fff !important;}
-.mdui-text-color-black{color: #fff !important;}
-code{background-color: #0000 !important;color: #66ccff}
+.text{color: #fff;}
 .vinput{color: #fff !important;}
-.md-body{color: #fff}
 .md-body blockquote{color: #bbb;}
+a{color:#51b9ff;}
+code{color:#708fff;}
 ::-webkit-input-placeholder,.vctrl{color:rgba(255, 255, 255, 0.726)}
 .vemoji-btn,.vpreview-btn,.vcontent *{color: #fff !important;}
 .vsys{background: rgb(112, 112, 112) !important;color: #fff !important;}

@@ -73,51 +73,37 @@ function setCookie(cname,cval,exdays=0.5){
     var expires='expires='+d.toUTCString();
     document.cookie=cname+'='+cval+';'+expires+';path=/';
 }
+function addCss(url){
+    var x=document.createElement('link');
+    x.href=url;x.type='text/css';x.rel='stylesheet';
+    document.getElementById('theme_css').appendChild(x);
+}
 function theme_night(){
-    document.querySelector('html').classList.add('mdui-theme-layout-dark');
-    document.querySelector('body').classList.add('mdui-theme-layout-dark');
-    var node=document.getElementById('theme_css'),
-        hl=document.createElement('link'),t=document.createElement('link');
-    hl.href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/nord.min.css';
-    hl.type='text/css';
-    hl.rel='stylesheet';
-    node.appendChild(hl);
-    t.href='/assets/theme/night.css';
-    t.type='text/css';
-    t.rel='stylesheet';
-    node.appendChild(t);
+    setCookie('theme','night');
+    document.body.classList.add('mdui-theme-layout-dark');
+    addCss('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/nord.min.css');
+    addCss('/assets/theme/night.css');
 }
 function theme_pink(){
     setCookie('theme','pink');
-    var hl=document.createElement('link');
-    hl.href='/assets/theme/pink.css';
-    hl.type='text/css';
-    hl.rel='stylesheet';
-    document.getElementById('theme_css').appendChild(hl);
+    addCss('/assets/theme/pink.css');
 }
 function theme_blue(){
     setCookie('theme','blue');
-    var hl=document.createElement('link');
-    hl.href='/assets/theme/blue.css';
-    hl.type='text/css';
-    hl.rel='stylesheet';
-    document.getElementById('theme_css').appendChild(hl);
+    addCss('/assets/theme/blue.css');
 }
 function theme_clr(){
+    setCookie('theme','day');
     document.getElementById('theme_css').innerHTML='';
-    node=document.querySelector('html');
-    if(node.classList.contains('mdui-theme-layout-dark'))
-        node.classList.remove('mdui-theme-layout-dark');
-    node=document.querySelector('body');
-    if(node.classList.contains('mdui-theme-layout-dark'))
-        node.classList.remove('mdui-theme-layout-dark');
+    document.body.classList.remove('mdui-theme-layout-dark');
 }
 function theme(typ){
     if(typ=='chk')typ=getCookie('theme');
-    if(typ=='day')setCookie('theme','day'),theme_clr();
-    if(typ=='pink')setCookie('theme','pink'),theme_clr(),theme_pink();
-    if(typ=='blue')setCookie('theme','blue'),theme_clr(),theme_blue();
-    if(typ=='night')setCookie('theme','night'),theme_clr(),theme_night();
+    
+    if(typ=='day')theme_clr();
+    else if(typ=='pink')theme_clr(),theme_pink();
+    else if(typ=='blue')theme_clr(),theme_blue();
+    else if(typ=='night')theme_clr(),theme_night();
 }
 function copy(text){
     var x=document.createElement('textarea');
@@ -144,8 +130,8 @@ function highlight(){
         if(x.classList.contains('hljs-nb')){x.remove();return;}
         x.innerHTML=x.innerHTML.replace(/\s+$/g,'');
         var lang=x.classList[0],len=x.innerText.length;
-        try{lang=lang.split('-'),lang=lang[lang.length-1];}
-        catch{lang='text';}
+        if(lang&&lang.indexOf('-')!=-1)lang=lang.split('-'),lang=lang[lang.length-1];
+        else lang='text';
         hljs.highlightBlock(x);
         var nb=document.createElement('code'),str='',tot=x.innerText.split('\n').length;
         for(var i=1;i<=tot;++i)str+=i+'\n';
@@ -210,9 +196,9 @@ function highlight(){
             'padding: 2px 5px;',
             'cursor: pointer;',
         '}', 
-        '.hljs-cb{','background-color: #F7A4B9;','}',
+        '.hljs-cb{','background-color: #f7a4b9;','}',
         '.hljs-fd{','background-color: #66ccff;','}',
-        '.hljs-lang{','background-color: #39c5bb;','}',
+        '.hljs-lang{','background-color: #6f87ff;','}',
         '.hljs-len{','background-color: #f7a4b9;','}',
         '.hljs-fd:after,.hljs-cb:after,.hljs-lang:after,.hljs-len:after{','content: attr(data-title)','}',
         '.hljs-nb{color: #bbb !important;}'

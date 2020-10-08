@@ -2,7 +2,6 @@ window.addEventListener('load',(e)=>{first_load();});
 function first_load(){
     theme('chk');
     document.getElementById('loading-progress').hidden=1;
-    search_dialog=new mdui.Dialog('#search_dialog',{overlay:false});
     page_typ=document.getElementById('page_typ').innerText;
     if(page_typ=='index'){
         document.getElementById('toc_button').hidden=1;

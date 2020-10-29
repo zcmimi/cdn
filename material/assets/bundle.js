@@ -42,15 +42,13 @@ window.onscroll=function(){
     else document.getElementById('totop').classList.add('mdui-fab-hide');
 }
 function totop(){
-    if(document.body.scrollTop!=0||document.documentElement.scrollTop!=0){
-        window.scrollBy(0,-(speed+=20));
-        timeOut=setTimeout('totop()',20);
-    }
+    if(document.body.scrollTop||document.documentElement.scrollTop)
+        window.scrollBy(0,-(speed+=20)),timeOut=setTimeout('totop()',20);
     else clearTimeout(timeOut),document.getElementById('totop').classList.add('mdui-fab-hide'),speed=0;
 }
 function getCookie(cname){
     var name=cname+'=',decodedCookie=decodeURIComponent(document.cookie),ca=decodedCookie.split(';'),c;
-    for(i in ca){
+    for(var i in ca){
         c=ca[i];
         while(c.charAt(0)==' ')c=c.substring(1);
         if(c.indexOf(name)==0)return c.substring(name.length, c.length);

@@ -1,7 +1,6 @@
-.mdui-appbar,.mdui-card{box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);}
-.mdui-appbar{background-color: #fff;}
+.mdui-appbar{background-color: #fff;box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);}
+.mdui-card{border-radius: 6px;box-shadow:0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);}
 .article{margin-top: 50px;}
-.mdui-card{border-radius: 6px;}
 body{font-family: "Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif,Monaco,Hack,Ubuntu,Consolas,"微软雅黑";font-size: 17px;}
 pre code,pre tt{padding:8px;font-size:16px;}
 #toc{
